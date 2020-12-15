@@ -19,11 +19,10 @@ struct IlsInfo {
 extern double calculateCost(vector<int> *solution, double **matrizAdj);
 
 void perturb(Solution *solution, int dimension, double **matrizAdj) {
-	double precusto = solution->cost;
-	vector<int> current = solution->circuit;
+	
 	double cost;
 	int positions[4];
-
+	
 	for(int i = 0; i < 4; i++) {
 		positions[i] = rand() % (dimension-4)+1;
 	}
@@ -32,34 +31,52 @@ void perturb(Solution *solution, int dimension, double **matrizAdj) {
 
 	for(int i = 0; i < 3; i++) {
 		if(positions[i+1] <= positions[i]) {
-			positions[i+1] == positions[i]+1;
+			positions[i+1] = positions[i]+1;
 		}
 	}
 
-	if(positions[1] - positions[0] > dimension/10 - 1) {
-		positions[1] = positions[0] + dimension/10 -1;
+	if(positions[1] - positions[0] > dimension/10) {
+		positions[1] = positions[0] + dimension/10;
 	}
 
-	if(positions[3] - positions[2] > dimension/10 -1) {
-		positions[3] = positions[2] + dimension/10 - 1;
+	if(positions[3] - positions[2] > dimension/10) {
+		positions[3] = positions[2] + dimension/10;
 	}
+	
 
 	int firstRange = positions[1] - positions[0] + 1;
 	int secondRange = positions[3] - positions[2] + 1; 	
+	
+	
+	if(positions[2] == positions[1]+1) {
+		cost = matrizAdj[solution->circuit[positions[0]]][solution->circuit[positions[3]]]
+				+matrizAdj[solution->circuit[positions[1]]][solution->circuit[positions[3]+1]]
+				+matrizAdj[solution->circuit[positions[2]]][solution->circuit[positions[0]-1]]
+				-matrizAdj[solution->circuit[positions[0]]][solution->circuit[positions[0]-1]]
+				-matrizAdj[solution->circuit[positions[1]]][solution->circuit[positions[2]]]
+				-matrizAdj[solution->circuit[positions[3]]][solution->circuit[positions[3]+1]]
+				;
+	} else {
+		cost = matrizAdj[solution->circuit[positions[0]]][solution->circuit[positions[2]-1]]
+				+matrizAdj[solution->circuit[positions[1]]][solution->circuit[positions[3]+1]]
+				+matrizAdj[solution->circuit[positions[2]]][solution->circuit[positions[0]-1]]
+				+matrizAdj[solution->circuit[positions[3]]][solution->circuit[positions[1]+1]]
+				-matrizAdj[solution->circuit[positions[0]]][solution->circuit[positions[0]-1]]
+				-matrizAdj[solution->circuit[positions[1]]][solution->circuit[positions[1]+1]]
+				-matrizAdj[solution->circuit[positions[2]]][solution->circuit[positions[2]-1]]
+				-matrizAdj[solution->circuit[positions[3]]][solution->circuit[positions[3]+1]]			
+				;
+	}	
 
 	for(int i = 0; i < firstRange; i++) {
-		current.insert(current.begin() + positions[2], current[positions[0]]);
-		current.erase(current.begin() + positions[0]);
+		solution->circuit.insert(solution->circuit.begin() + positions[2], solution->circuit[positions[0]]);
+		solution->circuit.erase(solution->circuit.begin() + positions[0]);
 	}
-
 	
 	for(int i = 0; i < secondRange; i++) {
-		current.insert(current.begin() + positions[0], current[positions[2]]);
-		current.erase(current.begin() + positions[2]+1);
+		solution->circuit.insert(solution->circuit.begin() + positions[0], solution->circuit[positions[3]]);
+		solution->circuit.erase(solution->circuit.begin() + positions[3]+1);
 	}
 	
-	
-	solution->circuit = current;
-	solution->cost = calculateCost(&current, matrizAdj);
-
+	solution->cost += cost;	
 }
