@@ -10,26 +10,26 @@ struct Solution{
 
 struct reOptimization {
     double cost;
-    int firstVertice;
-    int secondVertice;
+    int firstvertex;
+    int secondvertex;
 };
 
 void reInsertion(reOptimization *bestNeighbour, Solution &solution, double **matrizAdj) {
 
     int bestI, bestJ, bestCost = 0;
 
-    int lastSwitchableVertice = solution.circuit.size() - 2;
+    int lastSwitchablevertex = solution.circuit.size() - 2;
 
     double cost;
 
-    for(int i = 1; i < lastSwitchableVertice-1; i++) {
+    for(int i = 1; i < lastSwitchablevertex-1; i++) {
         
         double delta = matrizAdj[solution.circuit[i-1]][solution.circuit[i+1]]
                       -matrizAdj[solution.circuit[i]][solution.circuit[i-1]]
                       -matrizAdj[solution.circuit[i]][solution.circuit[i+1]]
                       ;
 
-        for(int j = i + 2; j <= lastSwitchableVertice; j++) {
+        for(int j = i + 2; j <= lastSwitchablevertex; j++) {
             
             cost = delta                 
                         +matrizAdj[solution.circuit[i]][solution.circuit[j]]
@@ -47,7 +47,7 @@ void reInsertion(reOptimization *bestNeighbour, Solution &solution, double **mat
         }
     }
     
-    for(int i = 5; i <= lastSwitchableVertice; i++) {
+    for(int i = 5; i <= lastSwitchablevertex; i++) {
 
         double delta = -matrizAdj[solution.circuit[i]][solution.circuit[i-1]]
                        -matrizAdj[solution.circuit[i]][solution.circuit[i+1]]
@@ -69,7 +69,7 @@ void reInsertion(reOptimization *bestNeighbour, Solution &solution, double **mat
             }           
         }
     }
-    bestNeighbour->firstVertice = bestI;
-    bestNeighbour->secondVertice = bestJ;
+    bestNeighbour->firstvertex = bestI;
+    bestNeighbour->secondvertex = bestJ;
     bestNeighbour->cost = bestCost;
 }

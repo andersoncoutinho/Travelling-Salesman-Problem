@@ -10,8 +10,8 @@ struct Solution{
 
 struct reOptimization {
     double cost;
-    int firstVertice;
-    int secondVertice;
+    int firstvertex;
+    int secondvertex;
 };
 
 void opt2(reOptimization *bestNeighbour, Solution &solution, double **matrizAdj) {
@@ -41,7 +41,7 @@ void opt2(reOptimization *bestNeighbour, Solution &solution, double **matrizAdj)
             }
         }
     }
-    bestNeighbour->firstVertice = bestI;
-    bestNeighbour->secondVertice = bestJ;
+    bestNeighbour->firstvertex = bestI;
+    bestNeighbour->secondvertex = bestJ;
     bestNeighbour->cost = bestCost;
 }

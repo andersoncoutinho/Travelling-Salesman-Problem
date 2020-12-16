@@ -11,7 +11,7 @@ struct Solution {
 };
 
 struct InsertionInfo {
-    int insertedVertice;
+    int insertedvertex;
     int removedArc;
     double cost;
 };
@@ -51,7 +51,7 @@ void construction(Solution *solution, int dimension, double **matrizAdj) {
                                         +matrizAdj[buildingSolution[j]][candidateList[k]] 
                                         -matrizAdj[buildingSolution[i]][buildingSolution[j]];
                                     
-                insertionCost[l].insertedVertice = k;
+                insertionCost[l].insertedvertex = k;
                 insertionCost[l].removedArc = i;
                 l++;
             }   
@@ -64,8 +64,8 @@ void construction(Solution *solution, int dimension, double **matrizAdj) {
         int N = n != 0 ? rand() % (n) : 0;
         
         buildingSolution.insert(buildingSolution.begin() + insertionCost[N].removedArc + 1, 
-                                                                candidateList[insertionCost[N].insertedVertice]);
-        candidateList.erase(candidateList.begin() + insertionCost[N].insertedVertice);
+                                                                candidateList[insertionCost[N].insertedvertex]);
+        candidateList.erase(candidateList.begin() + insertionCost[N].insertedvertex);
         
     }
 

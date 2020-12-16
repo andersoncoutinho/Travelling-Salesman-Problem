@@ -7,8 +7,8 @@ struct Solution{
 
 struct reOptimization {
     double cost;
-    int firstVertice;
-    int secondVertice;
+    int firstvertex;
+    int secondvertex;
 };
 
 extern void opt2(reOptimization*bestNeighbour, Solution &solution, double **matrizAdj);
@@ -16,4 +16,5 @@ extern void hSwap (reOptimization *bestNeighbour, Solution &solution, double **m
 extern void reInsertion(reOptimization *bestNeighbour, Solution &solution, double **matrizAdj);
 extern void orOpt2(reOptimization*bestNeighbour, Solution &solution, double **matrizAdj);
 extern void orOpt3(reOptimization *bestNeighbour, Solution &solution, double **matrizAdj);
+void fillNeighbourhoods(vector<int> &neighbourhoods);
 

@@ -16,7 +16,7 @@ struct Solution {
 };
 
 double ** matrizAdj; // matriz de adjacencia
-int dimension; // quantidade total de vertices
+int dimension; // quantidade total de vertexs
 
 void printData();
 void printSolution(Solution solution, chrono::duration<double> algTime);

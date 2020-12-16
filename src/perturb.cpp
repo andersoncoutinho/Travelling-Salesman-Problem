@@ -10,9 +10,9 @@ struct Solution {
 };
 
 struct IlsInfo {
-    int firstVertice;
+    int firstvertex;
     int n1;
-    int secondVertice;
+    int secondvertex;
     int n2;
 };
 

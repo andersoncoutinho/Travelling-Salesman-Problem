@@ -19,12 +19,11 @@ void rvnd(Solution *solution, double **matrizAdj){
             
                 if(bestNeighbour.cost < 0) {
                     
-                    reverse(solution->circuit.begin() + bestNeighbour.firstVertice, 
-                            solution->circuit.begin() + bestNeighbour.secondVertice+1);
+                    reverse(solution->circuit.begin() + bestNeighbour.firstvertex, 
+                            solution->circuit.begin() + bestNeighbour.secondvertex+1);
 
                     solution->cost += bestNeighbour.cost;
-
-                    neighbourhoods = {1, 2, 3, 4, 5};
+                    fillNeighbourhoods(neighbourhoods);
 
                 } else {
                     neighbourhoods.erase(neighbourhoods.begin() + neighbourhood);
@@ -38,12 +37,12 @@ void rvnd(Solution *solution, double **matrizAdj){
 
                 if(bestNeighbour.cost < 0) {
 
-                    aux = solution->circuit[bestNeighbour.firstVertice];
-                    solution->circuit[bestNeighbour.firstVertice] = solution->circuit[bestNeighbour.secondVertice];
-                    solution->circuit[bestNeighbour.secondVertice] = aux;    
+                    aux = solution->circuit[bestNeighbour.firstvertex];
+                    solution->circuit[bestNeighbour.firstvertex] = solution->circuit[bestNeighbour.secondvertex];
+                    solution->circuit[bestNeighbour.secondvertex] = aux;    
 
                     solution->cost += bestNeighbour.cost;
-                    neighbourhoods = {1, 2, 3, 4, 5};
+                    fillNeighbourhoods(neighbourhoods);
 
                 } else {
                     neighbourhoods.erase(neighbourhoods.begin() + neighbourhood);
@@ -57,33 +56,33 @@ void rvnd(Solution *solution, double **matrizAdj){
 
                 if(bestNeighbour.cost < 0) {
                             
-                    if(bestNeighbour.firstVertice > bestNeighbour.secondVertice) {  
+                    if(bestNeighbour.firstvertex > bestNeighbour.secondvertex) {  
                             
-                        solution->circuit.insert(solution->circuit.begin()+bestNeighbour.secondVertice,
-                                                solution->circuit[bestNeighbour.firstVertice+2]);
+                        solution->circuit.insert(solution->circuit.begin()+bestNeighbour.secondvertex,
+                                                solution->circuit[bestNeighbour.firstvertex+2]);
                         
-                        solution->circuit.insert(solution->circuit.begin()+bestNeighbour.secondVertice,
-                                                solution->circuit[bestNeighbour.firstVertice+2]);
+                        solution->circuit.insert(solution->circuit.begin()+bestNeighbour.secondvertex,
+                                                solution->circuit[bestNeighbour.firstvertex+2]);
                         
-                        solution->circuit.insert(solution->circuit.begin()+bestNeighbour.secondVertice,
-                                                solution->circuit[bestNeighbour.firstVertice+2]);
+                        solution->circuit.insert(solution->circuit.begin()+bestNeighbour.secondvertex,
+                                                solution->circuit[bestNeighbour.firstvertex+2]);
                         
-                        solution->circuit.erase(solution->circuit.begin() + bestNeighbour.firstVertice+3);
-                        solution->circuit.erase(solution->circuit.begin() + bestNeighbour.firstVertice+3);
-                        solution->circuit.erase(solution->circuit.begin() + bestNeighbour.firstVertice+3);
+                        solution->circuit.erase(solution->circuit.begin() + bestNeighbour.firstvertex+3);
+                        solution->circuit.erase(solution->circuit.begin() + bestNeighbour.firstvertex+3);
+                        solution->circuit.erase(solution->circuit.begin() + bestNeighbour.firstvertex+3);
 
                     } else {
-                        solution->circuit.insert(solution->circuit.begin()+bestNeighbour.secondVertice+1, 
-                                                    solution->circuit.begin() +  bestNeighbour.firstVertice,
-                                                    solution->circuit.begin() +  bestNeighbour.firstVertice+3);
+                        solution->circuit.insert(solution->circuit.begin()+bestNeighbour.secondvertex+1, 
+                                                    solution->circuit.begin() +  bestNeighbour.firstvertex,
+                                                    solution->circuit.begin() +  bestNeighbour.firstvertex+3);
                                                            
-                        solution->circuit.erase(solution->circuit.begin() + bestNeighbour.firstVertice);
-                        solution->circuit.erase(solution->circuit.begin() + bestNeighbour.firstVertice);
-                        solution->circuit.erase(solution->circuit.begin() + bestNeighbour.firstVertice);
+                        solution->circuit.erase(solution->circuit.begin() + bestNeighbour.firstvertex);
+                        solution->circuit.erase(solution->circuit.begin() + bestNeighbour.firstvertex);
+                        solution->circuit.erase(solution->circuit.begin() + bestNeighbour.firstvertex);
                     }
 
                     solution->cost += bestNeighbour.cost;
-                    neighbourhoods = {1, 2, 3, 4, 5};
+                    fillNeighbourhoods(neighbourhoods);
                     
                 } else {
                    neighbourhoods.erase(neighbourhoods.begin() + neighbourhood);
@@ -97,14 +96,14 @@ void rvnd(Solution *solution, double **matrizAdj){
                 
                 if(bestNeighbour.cost < 0) {
                     
-                    aux = solution->circuit[bestNeighbour.firstVertice];
+                    aux = solution->circuit[bestNeighbour.firstvertex];
 
-                    solution->circuit.erase(solution->circuit.begin() + bestNeighbour.firstVertice);
+                    solution->circuit.erase(solution->circuit.begin() + bestNeighbour.firstvertex);
         
-                    solution->circuit.insert(solution->circuit.begin()+bestNeighbour.secondVertice, aux);
+                    solution->circuit.insert(solution->circuit.begin()+bestNeighbour.secondvertex, aux);
 
                     solution->cost += bestNeighbour.cost;
-                    neighbourhoods = {1, 2, 3, 4, 5};
+                    fillNeighbourhoods(neighbourhoods);
                     
                 } else {
                     neighbourhoods.erase(neighbourhoods.begin() + neighbourhood);
@@ -117,29 +116,29 @@ void rvnd(Solution *solution, double **matrizAdj){
                 orOpt2(&bestNeighbour, *solution, matrizAdj);
                 if(bestNeighbour.cost < 0) {
                          
-                    if(bestNeighbour.firstVertice > bestNeighbour.secondVertice) {
+                    if(bestNeighbour.firstvertex > bestNeighbour.secondvertex) {
 
-                        solution->circuit.insert(solution->circuit.begin()+bestNeighbour.secondVertice,
-                                                solution->circuit[bestNeighbour.firstVertice+1]);
+                        solution->circuit.insert(solution->circuit.begin()+bestNeighbour.secondvertex,
+                                                solution->circuit[bestNeighbour.firstvertex+1]);
                         
-                        solution->circuit.insert(solution->circuit.begin()+bestNeighbour.secondVertice,
-                                                solution->circuit[bestNeighbour.firstVertice+1]);
+                        solution->circuit.insert(solution->circuit.begin()+bestNeighbour.secondvertex,
+                                                solution->circuit[bestNeighbour.firstvertex+1]);
 
-                        solution->circuit.erase(solution->circuit.begin() + bestNeighbour.firstVertice+2);
-                        solution->circuit.erase(solution->circuit.begin() + bestNeighbour.firstVertice+2);
+                        solution->circuit.erase(solution->circuit.begin() + bestNeighbour.firstvertex+2);
+                        solution->circuit.erase(solution->circuit.begin() + bestNeighbour.firstvertex+2);
                         
                         
                     } else {
-                        solution->circuit.insert(solution->circuit.begin()+bestNeighbour.secondVertice+1, 
-                                                    solution->circuit.begin() +  bestNeighbour.firstVertice,
-                                                    solution->circuit.begin() +  bestNeighbour.firstVertice+2);
+                        solution->circuit.insert(solution->circuit.begin()+bestNeighbour.secondvertex+1, 
+                                                    solution->circuit.begin() +  bestNeighbour.firstvertex,
+                                                    solution->circuit.begin() +  bestNeighbour.firstvertex+2);
                                                 
-                        solution->circuit.erase(solution->circuit.begin() + bestNeighbour.firstVertice);
-                        solution->circuit.erase(solution->circuit.begin() + bestNeighbour.firstVertice);
+                        solution->circuit.erase(solution->circuit.begin() + bestNeighbour.firstvertex);
+                        solution->circuit.erase(solution->circuit.begin() + bestNeighbour.firstvertex);
                     }
 
                     solution->cost += bestNeighbour.cost;                                        
-                    neighbourhoods = {1, 2, 3, 4, 5};
+                    fillNeighbourhoods(neighbourhoods);
 
                 } else {
                    neighbourhoods.erase(neighbourhoods.begin() + neighbourhood);
@@ -148,4 +147,8 @@ void rvnd(Solution *solution, double **matrizAdj){
                 break;
         }
     }
+}
+
+void fillNeighbourhoods(vector<int> &neighbourhoods) {
+    neighbourhoods = {1, 2, 3, 4, 5};
 }
