@@ -1,1 +1,1 @@
-obj/perturb.o: src/perturb.cpp
+obj/perturb.o: src/perturb.cpp src/functions.h src/structures.h

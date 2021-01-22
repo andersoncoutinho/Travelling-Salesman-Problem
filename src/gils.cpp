@@ -1,17 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <chrono>
-
-using namespace std;
-
-struct Solution {
-    vector<int> circuit;
-    double cost;
-};
-
-extern void construction(Solution *solution, int dimension, double **matrizAdj);
-extern void rvnd(Solution *solution, double **matrizAdj);
-extern void perturb(Solution *solution, int dimension, double **matrizAdj);
+#include "functions.h"
 
 void gils(Solution *bestSolution, int maxIterations,int maxILS, double **matrizAdj, int dimension){
 
@@ -19,8 +9,7 @@ void gils(Solution *bestSolution, int maxIterations,int maxILS, double **matrizA
 
     for(int i = 0; i < maxIterations; i++) {
 
-        Solution preSolution;        
-        
+        Solution preSolution;
         construction(&preSolution, dimension, matrizAdj);
 
         Solution posSolution = preSolution;
@@ -33,8 +22,7 @@ void gils(Solution *bestSolution, int maxIterations,int maxILS, double **matrizA
                 preSolution = posSolution;
                 iterILS = -1;
             } else {
-                posSolution = preSolution;
-                
+                posSolution = preSolution;                
             }      
             
             perturb(&posSolution, dimension, matrizAdj);

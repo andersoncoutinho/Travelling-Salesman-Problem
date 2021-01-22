@@ -2,22 +2,8 @@
 #include <vector>
 #include <algorithm>
 #include <math.h>
+#include "functions.h"
 
-using namespace std;
-
-struct Solution {
-    vector<int> circuit;
-    double cost;
-};
-
-struct InsertionInfo {
-    int insertedvertex;
-    int removedArc;
-    double cost;
-};
-
-double calculateCost(vector<int> *solution, double **matrizAdj);
-bool compareValues(InsertionInfo v1, InsertionInfo v2);
 
 void construction(Solution *solution, int dimension, double **matrizAdj) {
 

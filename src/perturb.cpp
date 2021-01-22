@@ -1,22 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
-
-using namespace std;
-
-struct Solution {
-    vector<int> circuit;
-    double cost;
-};
-
-struct IlsInfo {
-    int firstvertex;
-    int n1;
-    int secondvertex;
-    int n2;
-};
-
-extern double calculateCost(vector<int> *solution, double **matrizAdj);
+#include "functions.h"
 
 void perturb(Solution *solution, int dimension, double **matrizAdj) {
 	

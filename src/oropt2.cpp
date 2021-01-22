@@ -1,25 +1,11 @@
 #include <iostream>
 #include <vector>
-
-using namespace std;
-
-struct Solution{
-    vector<int> circuit;
-    double cost;
-};
-
-struct reOptimization {
-    double cost;
-    int firstvertex;
-    int secondvertex;
-};
+#include "structures.h"
 
 void orOpt2(reOptimization *bestNeighbour, Solution &solution, double **matrizAdj) {
 
     int bestI, bestJ, bestCost = 0;
-
     int lastSwitchablevertex = solution.circuit.size()-2;
-
     double cost;
 
     for(int i = 1; i < lastSwitchablevertex - 2; i++) {

@@ -1,1 +1,1 @@
-obj/oropt2.o: src/oropt2.cpp
+obj/oropt2.o: src/oropt2.cpp src/structures.h

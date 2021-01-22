@@ -1,26 +1,14 @@
 #include "readData.h"
-#include <fstream>
 #include <iostream>
 #include <vector>
-#include <ctime>
 #include <chrono>
+#include "functions.h"
 
 #define MAX_INTERACTIONS 50
-#define MAX_ILS (dimension >= 150) ? (dimension/2) : (dimension)
+#define MAX_ILS ((dimension >= 150) ? (dimension/2) : (dimension))
 
-using namespace std;
-
-struct Solution {
-    vector<int> circuit;
-    double cost;
-};
-
-double ** matrizAdj; // matriz de adjacencia
-int dimension; // quantidade total de vertexs
-
-void printData();
-void printSolution(Solution solution, chrono::duration<double> algTime);
-void gils(Solution *solution, int maxIterations,int maxILS, double **matrizAdj, int dimension);
+double ** matrizAdj;
+int dimension;
 
 int main(int argc, char** argv) {
     
@@ -39,16 +27,6 @@ int main(int argc, char** argv) {
     printSolution(solution, algTime);
      
     return 0;
-}
-
-void printData() {
-  cout << "dimension: " << dimension << endl;
-  for (size_t i = 1; i <= dimension; i++) {
-    for (size_t j = 1; j <= dimension; j++) {
-      cout << matrizAdj[i][j] << " ";
-    }
-    cout << endl;
-  }
 }
 
 void printSolution(Solution solution, chrono::duration<double> algTime) {
